@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Incremental Game 2</title>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!--Click button-->
+    <div id="earngolddiv">
+        <h1 id="goldNow">You have <span id="goldamount">0</span> Gold</h1>
+        <button id="earngold" onclick="earngold()" onclick="constantupdate()">Gain <span id="earngoldgold">"1"</span>
+            Gold per Click</button>
+        <br>
+    </div>
+    <br>
+    <!--Normal Upgrades-->
+    <div id="UpLayer1">
+        <div id="u1div">
+            <button id="up1" onclick="buyup1()">Increase gold gain by <span id="up1effect">1</span> per upgrade</button>
+            <p>Cost: <span id="up1cost">10</span> Gold</p>
+            <p>Current total: <span id="up1total">0</span></p>
+        </div>
+
+        <div id="u2div">
+            <button id="up2" onclick="buyup2()">Reset first upgrade and make it's scaling higher, but multiply it's
+                effect by
+                <span id="up2benefit">1.5</span> compounding </button>
+            <p>Cost: <span id="up2cost">10</span> upgrade 1s</p>
+            <p>Current total: <span id="up2total">0</span></p>
+        </div>
+    </div>
+
+<!--Magic Reset-->
+    <div id="MagicLayer1">
+        <div id="MagicLayerUnlock1">
+            <p>Unlock at 10K Gold</p>
+        </div>
+        <div id="reset1div">
+            <button id="reset1" onclick="reset1()">Reset upgrade 2, upgrade 1, and Gold for <span
+                    id="magicgain">0</span>
+                magic
+                (10k+ Gold)</button>
+            <p>You have <span id="magicamount">0</span> Iron remaining</p>
+        </div>
+        <div id="magicup1div">
+            <button id="magicup1" onclick="buymup1()">Increase Gold multiplier by 1</button>
+            <p>Cost: <span id="mup1cost">1</span> Iron</p>
+            <p>Current total: <span id="mup1total">0</span></p>
+        </div>
+        <div id="magicup2div">
+            <button id="magicup2" onclick="buymup2()">First upgrade's benefit is 1 higher </button>
+            <p>Cost: <span id="mup2cost">5</span> Iron</p>
+            <p>Current total: <span id="mup2total">0</span></p>
+        </div>
+        <div id="magicup3div">
+            <button id="magicup3" onclick="buymup3()">Second upgrade's benefit is 10% higher </button>
+            <p>Cost: <span id="mup3cost" n>15</span> Iron</p>
+            <p>Current total: <span id="mup3total">0</span></p>
+        </div>
+        <div id="magicup4div">
+            <button id="magicup4" onclick="buymup4()">Upgrade 2 increases upgrade 1's scaling slower </button>
+            <p>Cost: <span id="mup4cost">50</span> Iron</p>
+            <p>Current total: <span id="mup4total">0</span>/9</p>
+        </div>
+    </div>
+    <br>
+</body>
+<div id="resetdiv">
+    <button id="reset" ondblclick="die()">RESET PROGRESS (double click required)</button>
+</div>
+<!--Style-->
+<style>
+    html,
+    body {
+        background-color: grey;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-shadow: 2px 2px black;
+        color: white;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    #up1,
+    #up2,
+    #reset1,
+    #magicup1,
+    #magicup2,
+    #magicup3,
+    #magicup4,
+    #reset {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-shadow: 2px 2px black;
+        height: fit-content;
+        width: 100%;
+        border-width: 5px;
+        border-style: double;
+        border-color: #1c1c1c;
+        background-color: #585858;
+        color: #ffffff;
+        font-size: 100%;
+        display: block;
+        text-align: center;
+        border-radius: 5px;
+        align-self: center;
+        position: 50%;
+        margin: auto;
+    }
+
+    #earngold:hover,
+    #up1:hover,
+    #up2:hover,
+    #reset1:hover,
+    #magicup1:hover,
+    #magicup2:hover,
+    #magicup3:hover,
+    #magicup4:hover,
+    #reset:hover {
+        cursor: pointer;
+        border-color: #e49090;
+    }
+
+    #goldNow {
+        text-align: center;
+    }
+
+    #earngold {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-shadow: 2px 2px black;
+        border-width: 5px;
+        border-style: double;
+        border-color: #1c1c1c;
+        background-color: #585858;
+        color: #ffffff;
+        font-size: 100%;
+        display: block;
+        text-align: center;
+        width: 25%;
+        height: 100px;
+        position: 50%;
+        margin: auto;
+        font-size: 100%;
+        border-radius: 5px;
+    }
+
+    #earngolddiv,
+    #u1div,
+    #u2div,
+    #reset1div,
+    #magicup1div,
+    #magicup2div,
+    #magicup3div,
+    #magicup4div,
+    #resetdiv {
+        background-color: #3f3f3f;
+        text-align: center;
+        height: fit-content;
+
+    }
+
+
+    #earngolddiv {
+        width: 90%;
+        height: 30%;
+        display: block;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        margin-top: 10px;
+        margin: auto;
+        position: 50%;
+
+    }
+
+    #u1div {
+        display: block;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        width: 23%;
+    }
+
+    #u2div {
+        display: block;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        width: 23%;
+        margin-left: 25%;
+    }
+
+    #MagicLayerUnlock1 {
+        display: flex;
+        text-align: center;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        background-color: #545454;
+        border-color: #343434;
+        width: 98%;
+        height: 450px;
+        margin-top: 250px;
+        z-index: 1000;
+        font-size: 200%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #reset1div {
+        display: block;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        width: 23%;
+        margin-top: 250px;
+        margin-left: 0%;
+    }
+
+    #magicup1div {
+        display: block;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        width: 23%;
+        margin-top: 250px;
+        margin-left: 25%;
+    }
+
+    #magicup2div {
+        display: block;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        width: 23%;
+        margin-top: 250px;
+        margin-left: 50%;
+    }
+
+    #magicup3div {
+        display: block;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        width: 23%;
+        margin-top: 250px;
+        margin-left: 75%;
+    }
+
+    #magicup4div {
+        display: block;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        width: 23%;
+        margin-top: 450px;
+        margin-left: 0%;
+    }
+
+
+    #resetdiv {
+        display: block;
+        position: absolute;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        width: 23%;
+        margin-top: 700px;
+        margin-left: 0%;
+
+    }
+</style>
+
+</html>
