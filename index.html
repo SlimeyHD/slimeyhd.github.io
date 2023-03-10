@@ -12,8 +12,8 @@
     <!--Click button-->
     <div id="earngolddiv">
         <h1 id="goldNow">You have <span id="goldamount">0</span> Gold</h1>
-        <button id="earngold" onclick="earngold()" onclick="constantupdate()">Gain <span id="earngoldgold">"1"</span>
-            Gold per Click</button>
+        <p id="earngold">You gain <span id="earngoldgold">"1"</span>
+            Gold per Second</p>
         <br>
     </div>
     <br>
@@ -110,7 +110,6 @@
         margin: auto;
     }
 
-    #earngold:hover,
     #up1:hover,
     #up2:hover,
     #reset1:hover,
@@ -130,10 +129,6 @@
     #earngold {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-shadow: 2px 2px black;
-        border-width: 5px;
-        border-style: double;
-        border-color: #1c1c1c;
-        background-color: #585858;
         color: #ffffff;
         font-size: 100%;
         display: block;
@@ -143,7 +138,6 @@
         position: 50%;
         margin: auto;
         font-size: 100%;
-        border-radius: 5px;
     }
 
     #earngolddiv,
@@ -207,7 +201,7 @@
         background-color: #545454;
         border-color: #343434;
         width: 98%;
-        height: 450px;
+        height: 400px;
         margin-top: 250px;
         z-index: 1000;
         font-size: 200%;
