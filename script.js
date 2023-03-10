@@ -18,11 +18,38 @@ mup4cost = Number(localStorage.getItem('mup4cost')) || 50
 mup4total = Number(localStorage.getItem('mup4total')) || 0
 mgoldmulti = Number(localStorage.getItem('mgoldmulti')) || 1
 magic = Number(localStorage.getItem('magic')) || 0
+
+
+const abbrNum = (number, decPlaces) => {
+  if (number >= 1e34) {
+      return number
+      
+  }else if(number <= 1000){
+  return number
+  }
+  decPlaces = Math.pow(10, decPlaces)
+  var abbrev = ['K', 'M', 'B', 'T', 'Qa', 'Qt', 'Sx', 'Sp', 'Oc', 'No']
+  for (var i = abbrev.length - 1; i >= 0; i--) {
+      var size = Math.pow(10, (i + 1) * 3)
+      if (size <= number) {
+          number = Math.round((number * decPlaces) / size) / decPlaces
+          if (number == 1000 && i < abbrev.length - 1) {
+              number = 1
+              i++
+          }
+          number += abbrev[i]
+          break
+      }
+  }
+  return number
+}
+
 update()
 
+var intervalID = window.setInterval(myCallback, 100);
 
-function earngold() {
-  gold = gold + ((up1total * up1benefit) +1) * mgoldmulti 
+function myCallback() {
+  gold = (gold + ((up1total * up1benefit) +1) * mgoldmulti)
   update()
 }
 function buyup1() {
@@ -128,8 +155,8 @@ update()
 }
 
 function update() {
-  document.getElementById("earngoldgold").innerHTML = Math.round(((up1total * up1benefit) +1) * mgoldmulti )
-  document.getElementById("goldamount").innerHTML = Math.round(gold)
+  document.getElementById("earngoldgold").innerHTML = abbrNum(Math.round(((up1total * up1benefit) +1) * mgoldmulti * 10), 2)
+  document.getElementById("goldamount").innerHTML = abbrNum(Math.round(gold), 2)
   document.getElementById("up1total").innerHTML = up1total
   document.getElementById("up1cost").innerHTML = up1cost
   document.getElementById("up2cost").innerHTML = up2cost
@@ -166,12 +193,14 @@ function update() {
   localStorage.setItem('mup4total', mup4total)
   localStorage.setItem('mup4cost', mup4cost)
   localStorage.setItem('mgoldmulti', mgoldmulti)
-
+setTimeout(1000)
   var magicButtons = document.getElementById("MagicLayerUnlock1");
   var resetdiv = document.getElementById("resetdiv");
     if (gold>=10000 || mup1total >= 1 || magic >= 1) {
-      magicButtons.style.display = "none";
+            magicButtons.style.zIndex = "-1";
+      magicButtons.innerText = ""
     } else {
-      magicButtons.style.display = "flex";
+
     }
 }
+
