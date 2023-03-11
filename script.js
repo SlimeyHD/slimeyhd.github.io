@@ -17,6 +17,7 @@ mup3total = Number(localStorage.getItem('mup3total')) || 0
 mup4cost = Number(localStorage.getItem('mup4cost')) || 50
 mup4total = Number(localStorage.getItem('mup4total')) || 0
 mgoldmulti = Number(localStorage.getItem('mgoldmulti')) || 1
+unlockedIron = Boolean(localStorage.getItem('unlockedIron1')) || false
 magic = Number(localStorage.getItem('magic')) || 0
   var resetdiv = document.getElementById("resetdiv");
   var MagicLayer1 = document.getElementById("MagicLayer1");
@@ -168,8 +169,7 @@ function die() {
   mup4cost = 50
   mup4total = 0
   mgoldmulti = 1
-
-
+  unlockedIron = false
   update()
 }
 
@@ -180,7 +180,7 @@ function update() {
   document.getElementById("up1cost").innerHTML = abbrNum(up1cost, 2)
   document.getElementById("up2cost").innerHTML = abbrNum(up2cost, 2)
   document.getElementById("up2total").innerHTML = abbrNum(up2total, 2)
-  document.getElementById("up1effect").innerHTML = abbrNum(Math.round(up1benefit), 2)
+  document.getElementById("up1effect").innerHTML = abbrNum(Math.round(up1benefit * 10), 2)
   document.getElementById("magicamount").innerHTML = abbrNum(magic, 2)
   document.getElementById("mup1cost").innerHTML = mup1cost
   document.getElementById("mup1total").innerHTML = mup1total
@@ -212,12 +212,15 @@ function update() {
   localStorage.setItem('mup4total', mup4total)
   localStorage.setItem('mup4cost', mup4cost)
   localStorage.setItem('mgoldmulti', mgoldmulti)
+  localStorage.setItem('unlockedIron1', unlockedIron)
 
-  if (gold >= 10000 || mup1total >= 1 || magic >= 1) {
+  if (gold >= 10000 || magic >= 1 || mup1total >= 1 || mup2total >= 1 || mup3total >= 1 || mup4total >= 1) {
     IronButton.style.display = "block"
     UnlockIronMenuButton.style.display = "none"
+    unlockedIron = true
   }else{
     IronButton.style.display = "none"
     UnlockIronMenuButton.style.display = "block"
+    unlockedIron = false
   }
 }
