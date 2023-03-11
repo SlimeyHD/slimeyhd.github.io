@@ -1,5 +1,5 @@
 
-var amountNewsTicker = 4
+var amountNewsTicker = 6
 
 function getRandomInt(max) {
 	return Math.floor(Math.random() * max);
