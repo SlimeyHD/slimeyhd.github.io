@@ -6,43 +6,61 @@
     <meta name="viewport" content="width=device-width">
     <title>Incremental Game 2</title>
     <script src="script.js" defer></script>
+    <script src="news-ticker.js"></script>
+
 </head>
 
 <body>
-    <!--Click button-->
+    <div id="ticker-box">
+        <ul id="tickertext">
+            <li>The news ticker is inspired by Antimatter Dimensions</li>
+            <li>Hi</li>
+            <li>I like Slimes</li>
+            <li><a href="https://www.youtube.com/channel/UC2B0pGuXwAoOjg019AkDipQ" ; style="color: #ddf1ff;">My YouTube
+                    Channel</a></li>
+        </ul>
+    </div>
+    <script>startTicker('ticker-box');</script>
+    <div id="Menu">
+        <button id="MainMenuButton" onclick="openMainMenu()">Main</button>
+        <button id="IronMenuButton" onclick="openIronMenu()">Iron Reset</button>
+        <button id="UnlockIronMenuButton">Reach 10K Gold</button>
+    </div>
     <div id="earngolddiv">
         <h1 id="goldNow">You have <span id="goldamount">0</span> Gold</h1>
-        <p id="earngold">You gain <span id="earngoldgold">"1"</span>
+        <p id="earngold">You are gaining <span id="earngoldgold">"1"</span>
             Gold per Second</p>
+    </div>
+    <div id="MainFrame">
+        <br>
+        <!--Normal Upgrades-->
+        <div id="UpLayer1">
+            <div id="u1div">
+                <button id="up1" onclick="buyup1()">Increase gold gain by <span id="up1effect">1</span> per
+                    upgrade</button>
+                <p>Cost: <span id="up1cost">10</span> Gold</p>
+                <p>Current total: <span id="up1total">0</span></p>
+            </div>
+
+            <div id="u2div">
+                <button id="up2" onclick="buyup2()">Reset first upgrade and make it's scaling higher, but multiply it's
+                    effect by
+                    <span id="up2benefit">1.5</span> compounding </button>
+                <p>Cost: <span id="up2cost">10</span> upgrade 1s</p>
+                <p>Current total: <span id="up2total">0</span></p>
+            </div>
+        </div>
+        <!--Magic Reset-->
+        <div id="MagicLayer1">
+        </div>
         <br>
     </div>
-    <br>
-    <!--Normal Upgrades-->
-    <div id="UpLayer1">
-        <div id="u1div">
-            <button id="up1" onclick="buyup1()">Increase gold gain by <span id="up1effect">1</span> per upgrade</button>
-            <p>Cost: <span id="up1cost">10</span> Gold</p>
-            <p>Current total: <span id="up1total">0</span></p>
-        </div>
-
-        <div id="u2div">
-            <button id="up2" onclick="buyup2()">Reset first upgrade and make it's scaling higher, but multiply it's
-                effect by
-                <span id="up2benefit">1.5</span> compounding </button>
-            <p>Cost: <span id="up2cost">10</span> upgrade 1s</p>
-            <p>Current total: <span id="up2total">0</span></p>
-        </div>
-    </div>
-
-<!--Magic Reset-->
-    <div id="MagicLayer1">
-        <div id="MagicLayerUnlock1">
-            <p>Unlock at 10K Gold</p>
-        </div>
+    <div id="IronFrame">
+        <br>
         <div id="reset1div">
             <button id="reset1" onclick="reset1()">Reset upgrade 2, upgrade 1, and Gold for <span
                     id="magicgain">0</span>
-                magic
+                Iron
                 (10k+ Gold)</button>
             <p>You have <span id="magicamount">0</span> Iron remaining</p>
         </div>
@@ -68,10 +86,9 @@
         </div>
     </div>
     <br>
+    </div>
+        <button id="reset" ondblclick="die()">RESET PROGRESS (double click required)</button>
 </body>
-<div id="resetdiv">
-    <button id="reset" ondblclick="die()">RESET PROGRESS (double click required)</button>
-</div>
 <!--Style-->
 <style>
     html,
@@ -81,7 +98,75 @@
         text-shadow: 2px 2px black;
         color: white;
         max-width: 100%;
+        max-height: 100%;
         overflow-x: hidden;
+        overflow-y: hidden;
+        font-size: 1vw;
+    }
+
+    .ticker-box {
+        display: block;
+        position: absolute;
+        background-color: #1c1c1c;
+    }
+
+    #tickertext {
+        list-style-type: none;
+        font-size: 1vw;
+        margin-top: -1%;
+    }
+
+    #Menu {
+        display: block;
+        position: absolute;
+        width: 4%;
+        height: 90%;
+        background-image: linear-gradient(to top, rgb(70, 70, 70), rgb(100, 100, 100), rgb(70, 70, 70));
+        margin-top: 2%;
+        border-width: 5px;
+        border-style: double;
+        border-image: linear-gradient(to top, rgb(147, 147, 147), rgb(194, 194, 194) rgb(150, 150, 150));
+    }
+
+
+
+    #MainFrame,
+    #IronFrame {
+        border-width: 5px;
+        border-style: double;
+        border-color: #1c1c1c;
+        display: none;
+        height: 28.5vw;
+        width: 91%;
+        margin-left: 6%;
+        margin-top: 1%;
+        background-color: #3f3f3f;
+        position: 50%;
+    }
+
+    #MainFrame {
+        display: block;
+    }
+
+    #IronMenuButton,
+    #MainMenuButton,
+    #UnlockIronMenuButton {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-shadow: 2px 2px black;
+        height: 9%;
+        width: 100%;
+        border-width: 5px;
+        border-style: double;
+        border-color: #1c1c1c;
+        background-color: #585858;
+        color: #ffffff;
+        font-size: 0.75vw;
+        display: block;
+        text-align: center;
+        border-radius: 5px;
+        align-self: center;
+        position: 50%;
+        margin-top: 10%;
     }
 
     #up1,
@@ -94,20 +179,33 @@
     #reset {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-shadow: 2px 2px black;
-        height: fit-content;
+        height: 40%;
         width: 100%;
         border-width: 5px;
         border-style: double;
         border-color: #1c1c1c;
         background-color: #585858;
         color: #ffffff;
-        font-size: 100%;
+        font-size: 0.85vw;
         display: block;
         text-align: center;
         border-radius: 5px;
         align-self: center;
         position: 50%;
         margin: auto;
+    }
+
+    #reset {
+        display: block;
+        position: absolute;
+        width: 20%;
+        height: 5%;
+        border-style: double;
+        border-radius: 5px;
+        border-width: 5px;
+        border-color: #2c2c2c;
+        margin-left: 75%;
+        margin-top: -5%;
     }
 
     #up1:hover,
@@ -117,7 +215,9 @@
     #magicup2:hover,
     #magicup3:hover,
     #magicup4:hover,
-    #reset:hover {
+    #reset:hover,
+    #IronMenuButton:hover,
+    #MainMenuButton:hover {
         cursor: pointer;
         border-color: #e49090;
     }
@@ -127,6 +227,7 @@
     }
 
     #earngold {
+
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-shadow: 2px 2px black;
         color: #ffffff;
@@ -137,7 +238,6 @@
         height: 100px;
         position: 50%;
         margin: auto;
-        font-size: 100%;
     }
 
     #earngolddiv,
@@ -151,21 +251,25 @@
     #resetdiv {
         background-color: #3f3f3f;
         text-align: center;
-        height: fit-content;
-
+        font-size: 1vw;
+        height: 10vw;
+        width: 21vw;
     }
 
 
     #earngolddiv {
-        width: 90%;
-        height: 30%;
+        height: 98vw;
+        width: 0.9vw;
+        margin-left: 6%;
+        margin-top: 3%;
+        font-size: 100%;
+        width: 90vw;
+        height: 15vw;
         display: block;
         border-style: double;
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        margin-top: 10px;
-        margin: auto;
         position: 50%;
 
     }
@@ -177,7 +281,7 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        width: 23%;
+        margin-left: 1%;
     }
 
     #u2div {
@@ -187,27 +291,9 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        width: 23%;
-        margin-left: 25%;
+        margin-left: 23%;
     }
 
-    #MagicLayerUnlock1 {
-        display: flex;
-        text-align: center;
-        position: absolute;
-        border-style: double;
-        border-radius: 5px;
-        border-width: 5px;
-        background-color: #545454;
-        border-color: #343434;
-        width: 98%;
-        height: 400px;
-        margin-top: 250px;
-        z-index: 1000;
-        font-size: 200%;
-        align-items: center;
-        justify-content: center;
-    }
 
     #reset1div {
         display: block;
@@ -216,9 +302,8 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        width: 23%;
-        margin-top: 250px;
-        margin-left: 0%;
+        margin-top: 0%;
+        margin-left: 1%;
     }
 
     #magicup1div {
@@ -228,9 +313,8 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        width: 23%;
-        margin-top: 250px;
-        margin-left: 25%;
+        margin-top: 0%;
+        margin-left: 23%;
     }
 
     #magicup2div {
@@ -240,9 +324,8 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        width: 23%;
-        margin-top: 250px;
-        margin-left: 50%;
+        margin-top: 0%;
+        margin-left: 45%;
     }
 
     #magicup3div {
@@ -252,9 +335,8 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        width: 23%;
-        margin-top: 250px;
-        margin-left: 75%;
+        margin-top: 0%;
+        margin-left: 67%;
     }
 
     #magicup4div {
@@ -264,24 +346,12 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        width: 23%;
-        margin-top: 450px;
-        margin-left: 0%;
+        margin-top: 12.5%;
+        margin-left: 1%;
     }
 
 
-    #resetdiv {
-        display: block;
-        position: absolute;
-        border-style: double;
-        border-radius: 5px;
-        border-width: 5px;
-        border-color: #2c2c2c;
-        width: 23%;
-        margin-top: 700px;
-        margin-left: 0%;
 
-    }
 </style>
 
 </html>
