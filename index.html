@@ -13,15 +13,23 @@
 <body>
     <div id="ticker-box">
         <ul id="tickertext">
-            <li>The news ticker is inspired by Antimatter Dimensions</li>
+            <li>The news ticker is inspired by <a href="https://ivark.github.io/AntimatterDimensions/" target="_blank" ;
+                    style="color: rgb(221, 241, 255);">Antimatter Dimensions</a></li>
             <li>Hi</li>
             <li>I like Slimes</li>
-            <li><a href="https://www.youtube.com/channel/UC2B0pGuXwAoOjg019AkDipQ" ; style="color: #ddf1ff;">My YouTube
+            <li><a href="https://www.youtube.com/channel/UC2B0pGuXwAoOjg019AkDipQ" target="_blank" ;
+                    style="color: rgb(221, 241, 255);">My YouTube
                     Channel</a></li>
             <li>hamburger cheesburger big mac whopper</li>
             <li>sussy baka</li>
             <li>TripleGame#0562 slay</li>
-
+            <li>Join my <a href="https://discord.gg/HU4GHuSz2D" target="_blank">Discord Server</a></li>
+            <li>Hey bro did u see that wait what was it uh.. i forgor 💀</li>
+            <li>Sub to MrBeast (please)</li>
+            <li>bread is nice.</li>
+            <li>is orange named orange because orange is orange or is orange named orange because oranges are orange
+            </li>
+            <li>dont turn around, this is a threat.</li>
         </ul>
     </div>
     <script>startTicker('ticker-box');</script>
@@ -71,10 +79,10 @@
         <div id="magicup1div">
             <button id="magicup1" onclick="buymup1()">Increase Gold multiplier by 1</button>
             <p>Cost: <span id="mup1cost">1</span> Iron</p>
-            <p>Current total: <span id="mup1total">0</span></p>
+            <p>Current total: <span id="mup1total">0</span>x</p>
         </div>
         <div id="magicup2div">
-            <button id="magicup2" onclick="buymup2()">First upgrade's benefit is 1 higher </button>
+            <button id="magicup2" onclick="buymup2()">First upgrade's benefit is 10 higher </button>
             <p>Cost: <span id="mup2cost">5</span> Iron</p>
             <p>Current total: <span id="mup2total">0</span></p>
         </div>
@@ -129,23 +137,23 @@
         margin-top: 2%;
         border-width: 5px;
         border-style: double;
-        border-color:rgb(28, 28, 28);
+        border-color: rgb(28, 28, 28);
     }
 
 
 
     #MainFrame,
     #IronFrame {
+        display: none;
+        position: absolute;
+        width: 90%;
+        height: 55%;
+        background-image: radial-gradient(closest-side, rgb(89, 89, 89), rgb(66, 66, 66));
+        margin-top: 2%;
+        margin-left: 6%;
         border-width: 5px;
         border-style: double;
         border-color: rgb(28, 28, 28);
-        display: none;
-        height: 28.5vw;
-        width: 91%;
-        margin-left: 6%;
-        margin-top: 1%;
-        background-image: radial-gradient(closest-side, rgb(89, 89, 89), rgb(66, 66, 66));
-        position: 50%;
     }
 
     #MainFrame {
@@ -164,7 +172,7 @@
         border-color: #1c1c1c;
         background-image: radial-gradient(closest-side, rgb(69, 69, 69), rgb(57, 57, 57));
         color: #ffffff;
-        font-size: 0.75vw;
+        font-size: 75%;
         display: block;
         text-align: center;
         border-radius: 5px;
@@ -173,7 +181,7 @@
         margin-top: 10%;
     }
 
-    #IronMenuButton{
+    #IronMenuButton {
         display: none;
     }
 
@@ -192,15 +200,19 @@
         border-width: 5px;
         border-style: double;
         border-color: #1c1c1c;
-        background-image: radial-gradient(closest-side, rgb(86, 86, 86), rgb(71, 71, 71));
+        background-color: rgb(85, 85, 85);
         color: #ffffff;
-        font-size: 0.85vw;
+        font-size: 90%;
         display: block;
         text-align: center;
         border-radius: 5px;
         align-self: center;
         position: 50%;
         margin: auto;
+    }
+
+    #up2{
+        font-size: 75%;
     }
 
     #reset {
@@ -227,7 +239,7 @@
     #IronMenuButton:hover,
     #MainMenuButton:hover {
         cursor: pointer;
-        border-color: #e49090;
+        border-color: rgb(228, 144, 144);
     }
 
     #goldNow {
@@ -259,15 +271,13 @@
     #resetdiv {
         background-image: radial-gradient(closest-side, rgb(69, 69, 69), rgb(57, 57, 57));
         text-align: center;
-        font-size: 1vw;
-        height: 10vw;
-        width: 21vw;
+        font-size: 100%;
+        height: 35%;
+        width: 22%;
     }
 
 
     #earngolddiv {
-        height: 98vw;
-        width: 0.9vw;
         margin-left: 6%;
         margin-top: 3%;
         font-size: 100%;
@@ -300,7 +310,7 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        margin-left: 23%;
+        margin-left: 25%;
     }
 
 
@@ -323,7 +333,7 @@
         border-width: 5px;
         border-color: #2c2c2c;
         margin-top: 0%;
-        margin-left: 23%;
+        margin-left: 25%;
     }
 
     #magicup2div {
@@ -334,7 +344,7 @@
         border-width: 5px;
         border-color: #2c2c2c;
         margin-top: 0%;
-        margin-left: 45%;
+        margin-left: 49%;
     }
 
     #magicup3div {
@@ -345,7 +355,7 @@
         border-width: 5px;
         border-color: #2c2c2c;
         margin-top: 0%;
-        margin-left: 67%;
+        margin-left: 73%;
     }
 
     #magicup4div {
@@ -355,7 +365,7 @@
         border-radius: 5px;
         border-width: 5px;
         border-color: #2c2c2c;
-        margin-top: 12.5%;
+        margin-top: 15%;
         margin-left: 1%;
     }
 </style>
