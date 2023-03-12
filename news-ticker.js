@@ -1,9 +1,8 @@
 
-var amountNewsTicker = 6
 
 function getRandomInt(max) {
 	return Math.floor(Math.random() * max);
-  }
+}
 
 function applyStyles(obj, styles) {
 	var property;
@@ -27,6 +26,7 @@ function startTicker(id, param) {
 	var extendedParam = extend(defaultParam, param);
 	var ul = tickerBox.getElementsByTagName("ul");
 	var li = ul[0].getElementsByTagName("li");
+	var amountNewsTicker = li.length
 	for (i = 0; i < li.length; i++) {
 		applyStyles(li[i], { position: 'absolute', 'white-space': 'nowrap', display: 'none' });
 	}
@@ -35,10 +35,10 @@ function startTicker(id, param) {
 	var trans_width = tickerBox.offsetWidth;
 	var chunk_width = 1;
 
-	var iterateTickerElement = function(trans_width) {
+	var iterateTickerElement = function (trans_width) {
 		li[li_index].style.left = trans_width + "px";
 		li[li_index].style.display = '';
-		var t = setInterval(function() {
+		var t = setInterval(function () {
 			if (parseInt(li[li_index].style.left) > -li[li_index].offsetWidth) {
 				li[li_index].style.left = parseInt(li[li_index].style.left) - chunk_width + "px";
 			} else {
@@ -49,7 +49,7 @@ function startTicker(id, param) {
 					li_index = getRandomInt(amountNewsTicker);
 					iterateTickerElement(trans_width);
 				} else if (li_index < li.length) {
-					setTimeout(function() { iterateTickerElement(trans_width); }, extendedParam.delay);
+					setTimeout(function () { iterateTickerElement(trans_width); }, extendedParam.delay);
 				}
 			}
 		}, extendedParam.speed);
