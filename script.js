@@ -19,12 +19,29 @@ mup4total = Number(localStorage.getItem('mup4total')) || 0
 mgoldmulti = Number(localStorage.getItem('mgoldmulti')) || 1
 unlockedIron = Boolean(localStorage.getItem('unlockedIron1')) || false
 magic = Number(localStorage.getItem('magic')) || 0
-  var resetdiv = document.getElementById("resetdiv");
-  var MagicLayer1 = document.getElementById("MagicLayer1");
-  var MainFrame = document.getElementById("MainFrame");
-  var IronFrame = document.getElementById("IronFrame");
-  var IronButton = document.getElementById("IronMenuButton");
-  var UnlockIronMenuButton = document.getElementById("UnlockIronMenuButton")
+//All Buttons//
+var resetdiv = document.getElementById("resetdiv");
+var MagicLayer1 = document.getElementById("MagicLayer1");
+var MainFrame = document.getElementById("MainFrame");
+var IronFrame = document.getElementById("IronFrame");
+var IronButton = document.getElementById("IronMenuButton");
+var UnlockIronMenuButton = document.getElementById("UnlockIronMenuButton")
+var u1button = document.getElementById("up1")
+var u2button = document.getElementById("up2")
+var reset1button = document.getElementById("reset1")
+var mup1button = document.getElementById("magicup1")
+var mup2button = document.getElementById("magicup2")
+var mup3button = document.getElementById("magicup3")
+var mup4button = document.getElementById("magicup4")
+
+//Hover Bools//
+u1buttonhover = false
+u2buttonhover = false
+reset1buttonhover = false
+mup1buttonhover = false
+mup2buttonhover = false
+mup3buttonhover = false
+mup4buttonhover = false
 
 const abbrNum = (number, decPlaces) => {
   if (number >= 1e34) {
@@ -183,7 +200,7 @@ function update() {
   document.getElementById("up1effect").innerHTML = abbrNum(Math.round(up1benefit * 10), 2)
   document.getElementById("magicamount").innerHTML = abbrNum(magic, 2)
   document.getElementById("mup1cost").innerHTML = mup1cost
-  document.getElementById("mup1total").innerHTML = mup1total
+  document.getElementById("mup1total").innerHTML = mup1total + 1
   document.getElementById("mup2cost").innerHTML = mup2cost
   document.getElementById("mup2total").innerHTML = mup2total
   document.getElementById("mup3cost").innerHTML = mup3cost
@@ -218,9 +235,157 @@ function update() {
     IronButton.style.display = "block"
     UnlockIronMenuButton.style.display = "none"
     unlockedIron = true
-  }else{
+  } else {
     IronButton.style.display = "none"
     UnlockIronMenuButton.style.display = "block"
     unlockedIron = false
   }
+
+
+
+  if (gold + 1 <= up1cost) {
+    u1button.style.borderColor = "rgb(228, 144, 144)"
+  } else {
+    u1button.style.borderColor = "rgb(108, 247, 66)"
+  }
+
+  if (up1total + 1 <= up2cost) {
+    u2button.style.borderColor = "rgb(228, 144, 144)"
+  } else {
+    u2button.style.borderColor = "rgb(108, 247, 66)"
+  }
+
+  if (gold + 1 <= 10000) {
+    reset1button.style.borderColor = "rgb(228, 144, 144)"
+  } else {
+    reset1button.style.borderColor = "rgb(108, 247, 66)"
+  }
+
+  if (magic + 1 <= mup1cost) {
+    mup1button.style.borderColor = "rgb(228, 144, 144)"
+  } else {
+    mup1button.style.borderColor = "rgb(108, 247, 66)"
+  }
+
+  if (magic + 1 <= mup2cost) {
+    mup2button.style.borderColor = "rgb(228, 144, 144)"
+  } else {
+    mup2button.style.borderColor = "rgb(108, 247, 66)"
+  }
+
+  if (magic + 1 <= mup3cost) {
+    mup3button.style.borderColor = "rgb(228, 144, 144)"
+  } else {
+    mup3button.style.borderColor = "rgb(108, 247, 66)"
+  }
+
+  if (magic + 1 <= mup4cost) {
+    mup4button.style.borderColor = "rgb(228, 144, 144)"
+  } else {
+    mup4button.style.borderColor = "rgb(108, 247, 66)"
+  }
 }
+
+
+u1button.addEventListener('mouseenter', function () {
+  u1buttonhover = true
+  this.style.backgroundColor = this.style.borderColor
+});
+
+u1button.addEventListener('mouseleave', function () {
+  u1buttonhover = false
+  this.style.backgroundColor = "rgb(85, 85, 85)"
+});
+
+u2button.addEventListener('mouseenter', function () {
+  u2buttonhover = true
+  this.style.backgroundColor = this.style.borderColor
+});
+
+u2button.addEventListener('mouseleave', function () {
+  u2buttonhover = false
+  this.style.backgroundColor = "rgb(85, 85, 85)"
+});
+
+reset1button.addEventListener('mouseenter', function () {
+  reset1buttonhover = true
+  this.style.backgroundColor = this.style.borderColor
+});
+
+reset1button.addEventListener('mouseleave', function () {
+  reset1buttonhover = false
+  this.style.backgroundColor = "rgb(85, 85, 85)"
+});
+
+mup1button.addEventListener('mouseenter', function () {
+  mup1buttonhover = true
+  this.style.backgroundColor = this.style.borderColor
+});
+
+mup1button.addEventListener('mouseleave', function () {
+  mup1buttonhover = false
+  this.style.backgroundColor = "rgb(85, 85, 85)"
+});
+
+mup2button.addEventListener('mouseenter', function () {
+  mup2buttonhover = true
+  this.style.backgroundColor = this.style.borderColor
+});
+
+mup2button.addEventListener('mouseleave', function () {
+  mup2buttonhover = false
+  this.style.backgroundColor = "rgb(85, 85, 85)"
+});
+
+mup3button.addEventListener('mouseenter', function () {
+  mup3buttonhover = true
+  this.style.backgroundColor = this.style.borderColor
+});
+
+mup3button.addEventListener('mouseleave', function () {
+  mup3buttonhover = false
+  this.style.backgroundColor = "rgb(85, 85, 85)"
+});
+
+mup4button.addEventListener('mouseenter', function () {
+  mup3buttonhover = true
+  this.style.backgroundColor = this.style.borderColor
+});
+
+mup4button.addEventListener('mouseleave', function () {
+  mup3buttonhover = false
+  this.style.backgroundColor = "rgb(85, 85, 85)"
+});
+
+const observer = new MutationObserver(function (mutationsList, observer) {
+  // This function will be called whenever a mutation occurs
+  mutationsList.forEach(mutation => {
+    if (mutation.attributeName === 'style' && mutation.target.style.borderColor) {
+      if (u1buttonhover == true) {
+        u1button.style.backgroundColor = u1button.style.borderColor
+      }
+      if (u2buttonhover == true) {
+        u2button.style.backgroundColor = u2button.style.borderColor
+      }
+      if (reset1buttonhover == true) {
+        reset1button.style.backgroundColor = reset1button.style.borderColor
+      }
+      if (mup1buttonhover == true) {
+        mup1button.style.backgroundColor = mup1button.style.borderColor
+      }
+      if (mup2buttonhover == true) {
+        mup2button.style.backgroundColor = mup2button.style.borderColor
+      }
+      if (mup3buttonhover == true) {
+        mup3button.style.backgroundColor = mup3button.style.borderColor
+      }
+      if (mup4buttonhover == true) {
+        mup4button.style.backgroundColor = mup4button.style.borderColor
+      }
+    }
+  });
+});
+
+
+observer.observe(u1button, { attributes: true, attributeFilter: ['style'] });
+observer.observe(u2button, { attributes: true, attributeFilter: ['style'] });
